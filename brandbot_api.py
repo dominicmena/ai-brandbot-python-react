@@ -16,4 +16,4 @@ async def generate_snippet_api(prompt: str):
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
-# RUN SERVER: fastapi dev branbot_api.py
+# RUN SERVER: fastapi dev branbot_api.py /// http://127.0.0.1:8000/docs for dashboard
