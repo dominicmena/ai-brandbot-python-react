@@ -1,13 +1,15 @@
 from typing import Union
+from brandbot import generate_branding_snippet, generate_keywords
 
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.get("/generate_snippet")
+async def generate_snippet_api(prompt: str):
+     snippet = generate_branding_snippet(prompt)
+     return {"snippet": snippet}
 
 
 @app.get("/items/{item_id}")
