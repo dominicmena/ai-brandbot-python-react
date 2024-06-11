@@ -13,6 +13,7 @@ load_dotenv()
 
 warnings.filterwarnings("ignore", category=NotOpenSSLWarning)
 
+MAX_INPUT_LENGTH = 12
 
 def main():
     print("Running brandbot!")
@@ -23,10 +24,18 @@ def main():
     user_input = args.input
 
     print(f"User input: {user_input}")
-    branding_result = generate_branding_snippet(user_input)
-    keywords_result = generate_keywords(user_input)
-    print(branding_result)
-    print(keywords_result)
+    if validate_length(user_input):
+        branding_result = generate_branding_snippet(user_input)
+        keywords_result = generate_keywords(user_input)
+        print(branding_result)
+        print(keywords_result)
+
+    else:
+        raise ValueError(f"Input length is too long. Must be under {MAX_INPUT_LENGTH}. Submitted input is {user_input}")
+
+
+def validate_length(prompt: str) -> bool:
+    return len(prompt) <= MAX_INPUT_LENGTH
 
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
