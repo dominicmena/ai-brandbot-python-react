@@ -20,19 +20,19 @@ def main():
     user_input = args.input
 
     print(f"User input: {user_input}")
-    pass
+    generate_branding_snippet(user_input)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_branding_snippet(prompt: str):
-    subject = "coffee"
-    prompt = f"Generate upbeat branding snippet for {subject}"
+  
+    enriched_prompt = f"Generate upbeat branding snippet for {prompt}: "
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt}
+            {"role": "user", "content": enriched_prompt}
         ],
         max_tokens=30
     )
