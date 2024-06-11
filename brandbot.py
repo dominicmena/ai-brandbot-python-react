@@ -52,7 +52,7 @@ def generate_keywords(prompt: str) -> List[str]:
     # strip whitespace
     keywords_text = keywords_text.strip()
     keywords_array = re.split(r'\d+\.\s+|\n', keywords_text)
-    keywords_array = [k.strip() for k in keywords_array]
+    keywords_array = [k.lower().strip() for k in keywords_array]
     keywords_array = [k for k in keywords_array if len(k) > 0]
 
     return keywords_array
