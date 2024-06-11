@@ -37,6 +37,8 @@ def generate_branding_snippet(prompt: str):
         max_tokens=30
     )
     print(response)
+    branding_text = response["choices"][0]["message"]["content"]
+    print(branding_text)
 
 if __name__ == "__main__":
     main()
