@@ -20,11 +20,13 @@ def main():
     user_input = args.input
 
     print(f"User input: {user_input}")
-    generate_branding_snippet(user_input)
+    result = generate_branding_snippet(user_input)
+    print(result)
+ 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY") 
 
-def generate_branding_snippet(prompt: str):
+def generate_branding_snippet(prompt: str) -> str:
   
     enriched_prompt = f"Generate upbeat branding snippet for {prompt}: "
 
@@ -37,8 +39,19 @@ def generate_branding_snippet(prompt: str):
         max_tokens=30
     )
     print(response)
-    branding_text = response["choices"][0]["message"]["content"]
-    print(branding_text)
+
+    # extract output text
+    branding_text: str = response["choices"][0]["message"]["content"]
+
+    # strip whitespace
+    branding_text = branding_text.strip()
+    last_char = branding_text[-1]
+
+# add elipses
+    if last_char not in {".", "!", "?"}:
+        branding_text += "..."
+
+    return branding_text
 
 if __name__ == "__main__":
     main()
