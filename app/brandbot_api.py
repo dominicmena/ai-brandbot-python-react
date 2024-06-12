@@ -2,6 +2,9 @@ from typing import Union
 from brandbot import generate_branding_snippet, generate_keywords
 from mangum import Mangum
 from fastapi import FastAPI, HTTPException
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 handler = Mangum(app)
