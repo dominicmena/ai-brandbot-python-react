@@ -1,10 +1,10 @@
 from typing import Union
 from brandbot import generate_branding_snippet, generate_keywords
-
+from mangum import Mangum
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
-
+handler = Mangum(app)
 MAX_INPUT_LENGTH = 32
 
 
