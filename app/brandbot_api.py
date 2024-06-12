@@ -26,7 +26,7 @@ async def generate_keywords_api(prompt: str):
 
 
 @app.get("/generate_snippet_and_keywords")
-async def generate_keywords_api(prompt: str):
+async def generate_snippet_and_keywords_api(prompt: str):
     validate_input_length(prompt)
     snippet = generate_branding_snippet(prompt)
     keywords = generate_keywords(prompt)

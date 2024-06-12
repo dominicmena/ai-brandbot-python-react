@@ -8,7 +8,7 @@ import re
 # Load environment variables from a .env file
 load_dotenv()
 
-MAX_INPUT_LENGTH = 32
+MAX_INPUT_LENGTH = 32 
 
 def main():
     parser = argparse.ArgumentParser()
@@ -20,17 +20,11 @@ def main():
     if validate_length(user_input):
         generate_branding_snippet(user_input)
         generate_keywords(user_input)
-
     else:
         raise ValueError(f"Input length is too long. Must be under {MAX_INPUT_LENGTH}. Submitted input is {user_input}")
 
-
 def validate_length(prompt: str) -> bool:
     return len(prompt) <= MAX_INPUT_LENGTH
-
-
-
-
 
 def generate_keywords(prompt: str) -> List[str]:
     openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -59,7 +53,6 @@ def generate_keywords(prompt: str) -> List[str]:
     print(f"Keywords: {keywords_text}")
     return keywords_array
 
-
 def generate_branding_snippet(prompt: str) -> str:
     openai.api_key = os.getenv("OPENAI_API_KEY")
     enriched_prompt = f"Generate upbeat branding snippet for {prompt}: "
@@ -82,13 +75,12 @@ def generate_branding_snippet(prompt: str) -> str:
     branding_text = branding_text.strip()
     last_char = branding_text[-1]
 
-# add elipses
+    # add ellipses
     if last_char not in {".", "!", "?"}:
         branding_text += "..."
 
     print(f"Branding: {branding_text}")
     return branding_text
-
 
 if __name__ == "__main__":
     main()
