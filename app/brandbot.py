@@ -5,13 +5,8 @@ import openai
 import argparse
 import re
 
-import warnings
-from urllib3.exceptions import NotOpenSSLWarning
-
 # Load environment variables from a .env file
 load_dotenv()
-
-warnings.filterwarnings("ignore", category=NotOpenSSLWarning)
 
 MAX_INPUT_LENGTH = 32
 

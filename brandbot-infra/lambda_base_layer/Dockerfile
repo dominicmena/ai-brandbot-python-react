@@ -1,7 +1,7 @@
 FROM amazonlinux:2
 
 # Install Python and dependencies
-RUN yum install -y python37 && \
+RUN yum install -y python39 && \
     yum install -y python3-pip && \
     yum install -y zip && \
     yum install -y gcc && \
@@ -22,6 +22,9 @@ RUN pip install -r /requirements.txt -t /python
 
 # Install dotenv
 RUN pip install python-dotenv
+
+# Install pydantic and other dependencies
+RUN python3.7 -m pip install pydantic>=1.8.1
 
 # Zip it up for deployment
 RUN zip -r /layer.zip /python
